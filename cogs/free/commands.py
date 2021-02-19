@@ -3,7 +3,7 @@ from discord.ext import commands
 import random
 import re
 
-class Dice(commands.Cog):
+class Commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -48,4 +48,4 @@ class Dice(commands.Cog):
             await ctx.send(msg)
 
 def setup(bot):
-    bot.add_cog(Dice(bot))
+    bot.add_cog(Commands(bot))
