@@ -21,6 +21,7 @@ class System(commands.Cog):
             return 
         
         await self.send_main_channel(
+            f'{member.mention}\n'\
             'VocaloCaféへようこそ！\n'\
             'はじめに#自己紹介に記入をしてください♪\n'\
             'VCは誰でも参加して大丈夫です！\n'\
