@@ -49,7 +49,7 @@ class System(commands.Cog):
                     role = discord.utils.get(member.guild.roles, name = "@everyone")
                     await channel.set_permissions(role, read_messages = False)
                 await channel.set_permissions(member, read_messages = True)
-
+                
         if before.channel is not None:
             if before.channel.category == category:
                 channel = discord.utils.get(category.text_channels, name = before.channel.name)
