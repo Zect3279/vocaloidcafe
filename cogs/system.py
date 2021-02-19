@@ -52,6 +52,7 @@ class System(commands.Cog):
 
         if before.channel is not None:
             if before.channel.category == category:
+                channel = discord.utils.get(category.text_channels, name = before.channel.name)
                 await channel.set_permissions(member, read_messages = False)
                 if len(before.channel.members) == 0:
                     channel = discord.utils.get(member.guild.text_channels, name = before.channel.name)
