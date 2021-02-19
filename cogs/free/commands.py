@@ -42,7 +42,7 @@ class Dice(commands.Cog):
 
             members = random.sample(ctx.author.voice.channel.members, result)
 
-            msg = f'選出者数: {dice} → {result}'
+            msg = f'選出者数: {dice}→{result}'
             for member in members:
                 msg += f'\n{member.mention}'
             await ctx.send(msg)
