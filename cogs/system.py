@@ -49,10 +49,12 @@ class System(commands.Cog):
                     channel = await chat.create_text_channel(name = after.channel.name)
                     role = discord.utils.get(member.guild.roles, name = "@everyone")
                     await channel.set_permissions(role, read_messages = False)
-                await channel.set_permissions(member, read_messages = True)
+                    await channel.set_permissions(member, read_messages = True)
+                else:
+                    channel = discord.utils.get(member.guild.text_channels, name = after.channel.name)
+                    await channel.set_permissions(member, read_messages = True)
             if after.channel.category == free_room:
-                channel = discord.utils.get(member.guild.text_channels, name = after.channel.name)
-                await channel.send(f'{member.mention} さんが入室しました')
+                await after.channel.send(f'{member.mention}さんが入室しました')
                 
         if before.channel is not None:
             if before.channel.category == chat:
@@ -61,6 +63,8 @@ class System(commands.Cog):
                 if len(before.channel.members) == 0:
                     channel = discord.utils.get(member.guild.text_channels, name = before.channel.name)
                     await channel.delete()
+            if before.channel.category == free_room:
+                await before.channel.send(f'{member.mention}さんが入室しました')
                     
     @commands.command()
     async def admin(self, ctx):
