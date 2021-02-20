@@ -51,7 +51,8 @@ class System(commands.Cog):
                     await channel.set_permissions(role, read_messages = False)
                 await channel.set_permissions(member, read_messages = True)
             if after.channel.category == free_room:
-                await after.channel.send(f'{member.mention}さんが入室しました')
+                channel = discord.utils.get(member.guild.text_channels, name = after.channel.name)
+                await channel.send(f'{member.mention}さんが入室しました')
                 
         if before.channel is not None:
             if before.channel.category == chat:
