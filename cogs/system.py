@@ -63,8 +63,6 @@ class System(commands.Cog):
                 if len(before.channel.members) == 0:
                     channel = discord.utils.get(member.guild.text_channels, name = before.channel.name)
                     await channel.delete()
-            if before.channel.category == free_room:
-                await before.channel.send(f'{member.mention}さんが入室しました')
                     
     @commands.command()
     async def admin(self, ctx):
