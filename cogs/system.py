@@ -56,7 +56,8 @@ class System(commands.Cog):
                     await channel.set_permissions(member, read_messages = True)
             if after.channel.category == free_room:
                 channel = discord.utils.get(free_room.text_channels, name = after.channel.name)
-                msg = await channel.send(f'{member.mention}さんが入室しました')
+                embed = discord.Embed(description = f'{member.mention}さんが入室しました')
+                msg = await channel.send(embed = embed)
                 await asyncio.sleep(8)
                 await msg.delete()
                 
@@ -68,7 +69,8 @@ class System(commands.Cog):
                     await channel.delete()
             if before.channel.category == free_room:
                 channel = discord.utils.get(free_room.text_channels, name = before.channel.name)
-                msg = await channel.send(f'{member.mention}さんが退室しました')
+                embed = discord.Embed(description = f'{member.mention}さんが退室しました')
+                msg = await channel.send(embed = embed)
                 await asyncio.sleep(8)
                 await msg.delete()
                     
