@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import asyncio
 
 class System(commands.Cog):
     def __init__(self, bot):
@@ -55,7 +56,9 @@ class System(commands.Cog):
                     await channel.set_permissions(member, read_messages = True)
             if after.channel.category == free_room:
                 channel = discord.utils.get(free_room.text_channels, name = after.channel.name)
-                await channel.send(f'{member.mention}さんが入室しました')
+                msg = await channel.send(f'{member.mention}さんが入室しました')
+                await asyncio.sleep(10)
+                await msg.delete()
                 
         if before.channel is not None:
             if before.channel.category == chat:
