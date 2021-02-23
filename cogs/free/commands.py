@@ -16,13 +16,6 @@ class Commands(commands.Cog):
     async def count(self, ctx):
         
         await ctx.send(ctx.guild.member_count)
-        
-    @commands.command()
-    async def roulette(self, ctx):
-
-        members = ctx.author.voice.channel.members
-        member = random.choice(members)
-        await ctx.send(member.mention)
 
     @commands.command()
     async def dice_roulette(self, ctx, dice):
@@ -46,6 +39,16 @@ class Commands(commands.Cog):
             for member in members:
                 msg += f'\n{member.mention}'
             await ctx.send(msg)
+            
+    @commands.command()
+    async def roulette(self, ctx, number):
+
+        members = random.sample(ctx.author.voice.channel.members, number)
+
+        msg = f'選出者数: {number}'
+        for member in members:
+            msg += f'\n{member.mention}'
+        await ctx.send(msg)
 
 def setup(bot):
     bot.add_cog(Commands(bot))
