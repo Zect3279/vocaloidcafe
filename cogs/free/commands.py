@@ -43,6 +43,7 @@ class Commands(commands.Cog):
     @commands.command()
     async def roulette(self, ctx, number):
 
+        number = int(number)
         members = random.sample(ctx.author.voice.channel.members, number)
 
         msg = f'選出者数: {number}'
