@@ -7,7 +7,7 @@ bot = commands.Bot(command_prefix=".", intents=intents)
 
 cogs = [
     'cogs.system',
-    'cogs.log'
+    'cogs.log',
     'cogs.free.commands',
     'cogs.free.dice'
 ]
