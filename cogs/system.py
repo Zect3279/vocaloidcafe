@@ -61,7 +61,6 @@ class System(commands.Cog):
                 channel = discord.utils.get(chat.text_channels, name = before.channel.name)
                 await channel.set_permissions(member, read_messages = False)
                 if len(before.channel.members) == 0:
-                    channel = discord.utils.get(member.guild.text_channels, name = before.channel.name)
                     await channel.delete()
                     
     @commands.command()
