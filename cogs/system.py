@@ -54,12 +54,6 @@ class System(commands.Cog):
                 else:
                     channel = discord.utils.get(member.guild.text_channels, name = after.channel.name)
                     await channel.set_permissions(member, read_messages = True)
-            if after.channel.category == free_room:
-                channel = discord.utils.get(free_room.text_channels, name = after.channel.name)
-                embed = discord.Embed(description = f'{member.mention}さんが入室しました')
-                msg = await channel.send(embed = embed)
-                await asyncio.sleep(8)
-                await msg.delete()
                 
         if before.channel is not None:
             if before.channel.category == chat:
@@ -67,12 +61,6 @@ class System(commands.Cog):
                 await channel.set_permissions(member, read_messages = False)
                 if len(before.channel.members) == 0:
                     await channel.delete()
-            if before.channel.category == free_room:
-                channel = discord.utils.get(free_room.text_channels, name = before.channel.name)
-                embed = discord.Embed(description = f'{member.mention}さんが退室しました')
-                msg = await channel.send(embed = embed)
-                await asyncio.sleep(8)
-                await msg.delete()
                     
     @commands.command()
     async def admin(self, ctx):
