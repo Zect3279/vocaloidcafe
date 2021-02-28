@@ -35,7 +35,7 @@ class System(commands.Cog):
             role = discord.utils.get(member.guild.roles, name = role_name)
             await member.add_roles(role)
 
-        cate = self.bot.get_channel()
+        cate = self.bot.get_channel(815536206979792906)
 
         channel = await cate.create_text_channel(name = member.name)
         await channel.set_permissions(member, read_messages = True)
