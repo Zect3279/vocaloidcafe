@@ -39,7 +39,7 @@ class System(commands.Cog):
 
         channel = await cate.create_text_channel(name = member.name)
         await channel.set_permissions(member, read_messages = True)
-        await channel.send(f'{member.mention}さん。はじめまして！\n何かサーバーに関して知りたいことがありましたら\nこちらでお聞きください！')
+        await channel.send(f'{member.mention}さん。はじめまして！\nサーバーに関して何かわからないことがありましたらこちらでお聞きください！')
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
