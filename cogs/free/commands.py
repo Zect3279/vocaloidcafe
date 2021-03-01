@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import random
 import re
+import asyncio
 
 class Commands(commands.Cog):
     def __init__(self, bot):
@@ -42,6 +43,31 @@ class Commands(commands.Cog):
             
     @commands.command()
     async def roulette(self, ctx, number):
+
+        number = int(number)
+        members = random.sample(ctx.author.voice.channel.members, number)
+
+        msg = f'選出者数: {number}'
+        for member in members:
+            msg += f'\n{member.mention}'
+        await ctx.send(msg)
+        
+    @commands.command()
+    async def reaction_roulette(self, ctx, number):
+
+        await ctx.message.add_reaction("✅")
+
+        members = []
+        def check(reaction, user):
+            if reaction.emoji == "✅" and user not in members:
+                if user.bot:
+                    return
+                members.append(user)
+
+        try:
+            await self.bot.wait_for("reaction_add", check = check, timeout = 30)
+        except asyncio.TimeoutError:
+            pass
 
         number = int(number)
         members = random.sample(ctx.author.voice.channel.members, number)
