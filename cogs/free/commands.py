@@ -70,7 +70,8 @@ class Commands(commands.Cog):
             pass
 
         number = int(number)
-
+        members = random.sample(members, number)
+        
         msg = f'選出者数: {number}'
         for member in members:
             msg += f'\n{member.mention}'
