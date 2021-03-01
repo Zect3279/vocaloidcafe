@@ -70,7 +70,6 @@ class Commands(commands.Cog):
             pass
 
         number = int(number)
-        members = random.sample(ctx.author.voice.channel.members, number)
 
         msg = f'選出者数: {number}'
         for member in members:
