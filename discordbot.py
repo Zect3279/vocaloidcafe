@@ -1,17 +1,28 @@
-import os
 import discord
 from discord.ext import commands
+from discord_slash import SlashCommand
+import settings
 
+from cogs.utils.system import System
+
+token = settings.TOKEN
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=".", intents=intents)
+slash = SlashCommand(bot, sync_commands=True)
+
+bot.system = System()
 
 cogs = [
-    'cogs.system',
+    'cogs.create',
+    'cogs.delete',
     'cogs.log',
+    'cogs.commands',
+    'cogs.admin',
     'cogs.free.commands',
     'cogs.free.dice'
 ]
+
 for cog in cogs:
     bot.load_extension(cog)
 
-bot.run(os.environ['DISCORD_BOT_TOKEN'])
+bot.run(token)
