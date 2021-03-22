@@ -77,5 +77,18 @@ class Commands(commands.Cog):
             msg += f'\n{member.mention}'
         await ctx.send(msg)
 
+    @commands.command()
+    async def ranuta(self, ctx):
+
+        members = ctx.author.voice.channel.members
+
+        random.shuffle(members)
+
+        for member in members:
+
+            if member.name.startswith('!'):
+                ctx.send(member.mention)
+                break
+
 def setup(bot):
     bot.add_cog(Commands(bot))
