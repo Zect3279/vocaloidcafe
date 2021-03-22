@@ -87,7 +87,7 @@ class Commands(commands.Cog):
         for member in members:
 
             if member.name.startswith('!'):
-                ctx.send(member.mention)
+                await ctx.send(member.mention)
                 break
 
 def setup(bot):
