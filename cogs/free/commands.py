@@ -86,7 +86,7 @@ class Commands(commands.Cog):
 
         for member in members:
 
-            if member.name.startswith('!'):
+            if member.nick.startswith('!'):
                 await ctx.send(member.mention)
                 break
 
