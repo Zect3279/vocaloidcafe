@@ -62,17 +62,5 @@ class Commands(commands.Cog):
 
         await ctx.send(f'{member.mention} を追加しました')
 
-    @cog_ext.cog_slash(
-        name = "url",
-        description = "参加チャンネルの招待URLを生成します",
-        guild_ids = [808283612105408533]
-    )
-    async def _url(self, ctx: SlashContext):
-
-        await ctx.respond()
-
-        invite_url = await ctx.author.voice.channel.create_invite()
-        await ctx.send(invite_url)
-
 def setup(bot):
     bot.add_cog(Commands(bot))
