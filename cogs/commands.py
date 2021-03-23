@@ -70,7 +70,9 @@ class Commands(commands.Cog):
     async def _url(self, ctx: SlashContext):
 
         await ctx.respond()
-        await ctx.send(ctx.author.voice.channel.create_invite().url)
+
+        invite_url = await ctx.author.voice.channel.create_invite()
+        await ctx.send(invite_url)
 
 def setup(bot):
     bot.add_cog(Commands(bot))
