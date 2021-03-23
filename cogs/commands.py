@@ -8,30 +8,6 @@ class Commands(commands.Cog):
         self.bot = bot
 
     @cog_ext.cog_slash(
-        name = "addon",
-        description = "チャンネルに拡張機能を追加します",
-        guild_ids = [808283612105408533],
-        options = [
-            create_option(
-                name = "addon",
-                description = "追加する拡張機能",
-                option_type = 3,
-                required = True,
-                choices=[
-                    create_choice(
-                        name = "Utawaku-Manager",
-                        value = "歌枠の参加者管理システム"
-                    )
-                ]
-            )
-        ]
-    )
-    async def _addon(self, ctx: SlashContext, addon: str):
-
-        await ctx.respond()
-        await ctx.send(f'[LOG]拡張機能を追加しました\n■{addon}')
-
-    @cog_ext.cog_slash(
         name = "rename",
         description = "カテゴリの名前を変更します",
         guild_ids = [808283612105408533],
