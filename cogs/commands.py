@@ -75,7 +75,7 @@ class Commands(commands.Cog):
             return
 
         category = ctx.channel.category
-        max_channel = self.bot.get_channel(self.bot.create_new_private)
+        max_channel = self.bot.get_channel(self.bot.system.create_new_private)
 
         await category.edit(position=max_channel.position+1)
 
