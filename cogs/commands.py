@@ -77,7 +77,7 @@ class Commands(commands.Cog):
         category = ctx.channel.category
         max_channel = self.bot.get_channel(self.bot.system.create_new_private)
 
-        await category.edit(position=max_channel.position+1)
+        await category.edit(position=max_channel.catefory.position+1)
 
         await ctx.send('チャンネルの表示を持ち上げました')
 
