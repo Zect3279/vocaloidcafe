@@ -6,18 +6,6 @@ from discord_slash.utils.manage_commands import create_option
 class Commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
-    @commands.command()
-    async def voicechat_list(self, ctx):
-
-        msg = ''
-
-        for channel in ctx.guild.text_channels:
-            if channel.name != 'text-channel':
-                return
-            msg += f'{channel.mention} {channel.category.name}({len(channel.category.voice_channels[0].members)})'
-
-        await ctx.send(msg)
 
     @cog_ext.cog_slash(
         name = "rename",
