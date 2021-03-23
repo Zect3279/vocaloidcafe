@@ -42,5 +42,11 @@ class Admin(commands.Cog):
             await ctx.author.add_roles(role)
             await ctx.send("管理者が付与されました")
 
+    @commands.Cog.listener()
+    async def on_ready(self):
+
+        channel = self.bot.get_channel(self.bot.system.administrator)
+        await channel.send('[LOG]BOTが再起動されました')
+
 def setup(bot):
     bot.add_cog(Admin(bot))
