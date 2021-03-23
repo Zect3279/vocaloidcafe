@@ -42,6 +42,20 @@ class Admin(commands.Cog):
             await ctx.author.add_roles(role)
             await ctx.send("管理者が付与されました")
 
+    @commands.command()
+    async def delete_channel(self, ctx):
+
+        if ctx.author.id != 521166149904236554:
+            return
+
+        if ctx.channel.name != 'text-channel':
+            return
+
+        category = ctx.channel.category
+        for channel in category.channels:
+            await channel.delete()
+        await category.delete()
+
     @commands.Cog.listener()
     async def on_ready(self):
 
