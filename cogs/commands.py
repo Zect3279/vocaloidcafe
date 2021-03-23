@@ -62,24 +62,5 @@ class Commands(commands.Cog):
 
         await ctx.send(f'{member.mention} を追加しました')
 
-    @cog_ext.cog_slash(
-        name = "bump",
-        description = "チャンネルの表示を持ち上げて通知します",
-        guild_ids = [808283612105408533],
-    )
-    async def _invite(self, ctx: SlashContext):
-
-        await ctx.respond()
-
-        if ctx.channel.name != 'text-channel':
-            return
-
-        category = ctx.channel.category
-        max_channel = self.bot.get_channel(self.bot.system.create_new_private)
-
-        await category.edit(position=max_channel.category.position+1)
-
-        await ctx.send('チャンネルの表示を持ち上げました')
-
 def setup(bot):
     bot.add_cog(Commands(bot))
