@@ -55,6 +55,14 @@ class Commands(commands.Cog):
 
             conn.zincrby('point', number, member.id)
             await ctx.message.add_reaction('✌️')
+            
+    @commands.command()
+    async def login_bonus(self, ctx):
+        
+        if ctx.author.id != 521166149904236554:
+            return
+        
+        conn.delete('login')
 
 def setup(bot):
     bot.add_cog(Commands(bot))
