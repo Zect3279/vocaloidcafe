@@ -19,7 +19,9 @@ cogs = [
     'cogs.commands',
     'cogs.admin',
     'cogs.free.commands',
-    'cogs.free.dice'
+    'cogs.free.dice',
+    'cogs.leveling.point',
+    'cogs.leveling.commands'
 ]
 
 for cog in cogs:
