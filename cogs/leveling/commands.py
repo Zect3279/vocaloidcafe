@@ -24,6 +24,11 @@ class Commands(commands.Cog):
     @commands.command()
     async def send(self, ctx, member: discord.Member, number: int):
 
+        point = conn.zscore("point", ctx.author.id)
+
+        if point < number:
+            return
+
         if number < 0:
             return
 
