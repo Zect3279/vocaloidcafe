@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands
+from discord_slash import cog_ext, SlashContext
+from discord_slash.utils.manage_commands import create_option, create_choice
 import asyncio
 
 import r
@@ -36,8 +38,28 @@ class Commands(commands.Cog):
         conn.zincrby('point', -1 * number, ctx.author.id)
         await ctx.message.add_reaction('✌️')
 
-    @commands.command()
-    async def send(self, ctx, member: discord.Member, number: int):
+    @cog_ext.cog_slash(
+        name = "send",
+        description = "メンバーにポイントを送信します",
+        guild_ids = [808283612105408533],
+        options = [
+            create_option(
+                name = "target",
+                description = "送信先",
+                option_type = 6,
+                required = True
+            ),
+            create_option(
+                name = "number",
+                description = "送信ポイント数",
+                option_type = 4,
+                required = True
+            )
+        ]
+    )
+    async def _send(self, ctx: SlashContext, target: discord.User, number: int):
+
+        await ctx.respond()
 
         point = conn.zscore("point", ctx.author.id)
 
@@ -47,9 +69,11 @@ class Commands(commands.Cog):
         if number < 0:
             return
 
-        conn.zincrby('point', number, member.id)
+        conn.zincrby('point', number, target.id)
         conn.zincrby('point', -1 * number, ctx.author.id)
-        await ctx.message.add_reaction('✌️')
+        
+        embed = discord.Embed(description=f'{ctx.author.mention}が{target.mention}に{number}ポイント送金しました')
+        await ctx.send(embed = embed)
 
     @commands.command()
     async def ranking(self, ctx):
