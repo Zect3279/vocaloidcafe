@@ -57,10 +57,5 @@ class Point(commands.Cog):
                 elif member.voice.self_mute == False:
                     conn.zincrby('point', 10, member.id)
 
-            def job():
-                conn.delete('login')
-
-            schedule.every().day.at("00:00").do(job)
-
 def setup(bot):
     bot.add_cog(Point(bot))
