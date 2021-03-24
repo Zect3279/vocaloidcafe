@@ -3,6 +3,9 @@ from discord.ext import commands
 import random
 import re
 
+import r
+conn = r.connect()
+
 class Hitblow(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -52,6 +55,7 @@ class Hitblow(commands.Cog):
             # 正解の場合と不正解の場合
             if hitBlow[0] == digit: 
                 await ctx.send(f'Congratulations!! TURN:{turn}')
+                conn.zincrby('point', 100, ctx.author.id)
                 break
             else:
                 await ctx.send(f'HIT:{hitBlow[0]}, BLOW:{hitBlow[1]}')
