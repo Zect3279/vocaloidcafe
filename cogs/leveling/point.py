@@ -40,7 +40,7 @@ class Point(commands.Cog):
 
         while True:
 
-            await asyncio.sleep(10)
+            await asyncio.sleep(60)
 
             guild = self.bot.get_guild(808283612105408533)
             members = []
@@ -53,9 +53,9 @@ class Point(commands.Cog):
                     return
 
                 if member.voice.self_mute == True:
-                    conn.zincrby('point', 30, member.id)
+                    conn.zincrby('point', 200, member.id)
                 elif member.voice.self_mute == False:
-                    conn.zincrby('point', 100, member.id)
+                    conn.zincrby('point', 300, member.id)
 
 def setup(bot):
     bot.add_cog(Point(bot))
