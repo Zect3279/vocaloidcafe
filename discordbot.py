@@ -22,7 +22,8 @@ cogs = [
     'cogs.free.dice',
     'cogs.leveling.point',
     'cogs.leveling.commands',
-    'cogs.minigame.hitblow'
+    'cogs.minigame.hitblow',
+    'cogs.minigame.doubleup'
 ]
 
 for cog in cogs:
