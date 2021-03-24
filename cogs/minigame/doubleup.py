@@ -17,6 +17,7 @@ class Hitblow(commands.Cog):
 
         if point < 100:
             await ctx.send('お金を貯めてからもう一度お願いします')
+            return
 
         conn.zincrby('point', -100, ctx.author.id)
         bet = 100
