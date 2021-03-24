@@ -12,6 +12,11 @@ class Hitblow(commands.Cog):
 
     @commands.command()
     async def du(self, ctx):
+        
+        point = conn.zscore("point", ctx.author.id)
+
+        if point < 100:
+            await ctx.send('お金を貯めてからもう一度お願いします')
 
         conn.zincrby('point', -100, ctx.author.id)
         bet = 100
