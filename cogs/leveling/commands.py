@@ -22,10 +22,13 @@ class Commands(commands.Cog):
             await ctx.send(f'{ctx.author.mention} {point}')
 
     @commands.command()
-    async def send(self, ctx, member: discord.Member):
+    async def send(self, ctx, member: discord.Member, number: int):
 
-        conn.zincrby('point', 100, member.id)
-        conn.zincrby('point', -100, ctx.author.id)
+        if number < 0:
+            return
+
+        conn.zincrby('point', number, member.id)
+        conn.zincrby('point', -1 * number, ctx.author.id)
         await ctx.message.add_reaction('✌️')
 
     @commands.command()
@@ -36,7 +39,7 @@ class Commands(commands.Cog):
 
         conn.zincrby('point', number, member.id)
         await ctx.message.add_reaction('✌️')
-        
+
     @commands.command()
     async def voicechat_control(self, ctx, number: int):
 
