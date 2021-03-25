@@ -47,9 +47,6 @@ class Point(commands.Cog):
                 members.extend(channel.members)
 
             for member in members:
-                if member.bot:
-                    break
-
                 if member.voice.self_mute == True:
                     conn.zincrby('point', 200, member.id)
                     await ch.send(f'200 {member.id}')
