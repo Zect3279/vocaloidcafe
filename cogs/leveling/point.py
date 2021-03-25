@@ -51,11 +51,15 @@ class Point(commands.Cog):
             for member in members:
                 if member.bot:
                     return
+                
+                ch = self.bot.get_channel(824476288529203230)
 
                 if member.voice.self_mute == True:
                     conn.zincrby('point', 200, member.id)
+                    await ctx.send(f'200 {member.id}')
                 elif member.voice.self_mute == False:
                     conn.zincrby('point', 300, member.id)
+                    await ctx.send(f'300 {member.id}')
 
 def setup(bot):
     bot.add_cog(Point(bot))
