@@ -40,20 +40,15 @@ class Point(commands.Cog):
 
         while True:
 
-            ch = self.bot.get_channel(824476288529203230)
             guild = self.bot.get_guild(808283612105408533)
             members = []
 
             for channel in guild.voice_channels:
                 members.extend(channel.members)
-                
-            await ch.send(members)
 
             for member in members:
                 if member.bot:
-                    return
-                
-                await ch.send(member)
+                    break
 
                 if member.voice.self_mute == True:
                     conn.zincrby('point', 200, member.id)
