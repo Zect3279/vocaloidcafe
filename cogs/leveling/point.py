@@ -39,8 +39,6 @@ class Point(commands.Cog):
     async def on_ready(self):
 
         while True:
-            
-            await ctx.send('OK')
 
             ch = self.bot.get_channel(824476288529203230)
             guild = self.bot.get_guild(808283612105408533)
@@ -49,20 +47,20 @@ class Point(commands.Cog):
             for channel in guild.voice_channels:
                 members.extend(channel.members)
                 
-            await ctx.send(members)
+            await ch.send(members)
 
             for member in members:
                 if member.bot:
                     return
                 
-                await ctx.send(member)
+                await ch.send(member)
 
                 if member.voice.self_mute == True:
                     conn.zincrby('point', 200, member.id)
-                    await ctx.send(f'200 {member.id}')
+                    await ch.send(f'200 {member.id}')
                 elif member.voice.self_mute == False:
                     conn.zincrby('point', 300, member.id)
-                    await ctx.send(f'300 {member.id}')
+                    await ch.send(f'300 {member.id}')
                     
             await asyncio.sleep(60)
 
