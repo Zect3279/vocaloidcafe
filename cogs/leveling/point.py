@@ -49,10 +49,10 @@ class Point(commands.Cog):
 
             for member in members:
                 if member.voice.self_mute == True:
-                    conn.zincrby('point', 200, member.id)
+                    conn.zincrby('point', 50, member.id)
 
                 elif member.voice.self_mute == False:
-                    conn.zincrby('point', 300, member.id)
+                    conn.zincrby('point', 100, member.id)
 
                     
             await asyncio.sleep(60)
