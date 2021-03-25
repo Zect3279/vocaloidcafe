@@ -40,7 +40,7 @@ class Point(commands.Cog):
 
         while True:
 
-            ch = self.bot.get_channel(824476288529203230)
+
             guild = self.bot.get_guild(808283612105408533)
             members = []
 
@@ -50,10 +50,10 @@ class Point(commands.Cog):
             for member in members:
                 if member.voice.self_mute == True:
                     conn.zincrby('point', 200, member.id)
-                    await ch.send(f'200 {member.id}')
+
                 elif member.voice.self_mute == False:
                     conn.zincrby('point', 300, member.id)
-                    await ch.send(f'300 {member.id}')
+
                     
             await asyncio.sleep(60)
 
