@@ -61,7 +61,7 @@ class Hitblow(commands.Cog):
 
             # 正解の判定
             if hitBlow[0] == digit: 
-                await ctx.send(f'```Congratulations!!! | TURN:{turn}\n{1000 // turn} points are back```')
+                await ctx.send(f'```Congratulations!!! | TURN:{turn}\n{1200 // turn} points are back```')
                 conn.zincrby('point', 1200 // turn, ctx.author.id)
                 break
 
