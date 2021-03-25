@@ -11,7 +11,7 @@ class Hitblow(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def hb(self, ctx):
+    async def hb2(self, ctx):
 
         digit = 4 # 解の桁数
 
@@ -20,7 +20,8 @@ class Hitblow(commands.Cog):
         solution = [str(n) for n in l[:digit]] # 配列から桁数分取り出し文字列に変換
 
         turn = 0
-        await ctx.send('Gamestart!!')
+        log = f'Please enter {digit} different numbers\n'
+        log_message = await ctx.send(f'```{log}```')
 
         while True:
 
@@ -39,7 +40,7 @@ class Hitblow(commands.Cog):
 
             msg = await self.bot.wait_for('message', check = check)
             if msg.content == 'reset':
-                await ctx.send(solution)
+                await ctx.send(f'```{solution}```')
                 break
             expected = list(msg.content)
 
@@ -52,13 +53,17 @@ class Hitblow(commands.Cog):
                 elif expected[i] in solution:
                     hitBlow[1] += 1
 
-            # 正解の場合と不正解の場合
+            log += f'{msg.content} | HIT:{hitBlow[0]} | BLOW:{hitBlow[1]}\n'
+
+            await log_message.delete()
+            await msg.delete()
+            log_message = await ctx.send(f'```{log}```')
+
+            # 正解の判定
             if hitBlow[0] == digit: 
-                await ctx.send(f'Congratulations!! TURN:{turn}')
-                conn.zincrby('point', 100, ctx.author.id)
+                await ctx.send(f'```Congratulations!!! | TURN:{turn}\n{1000 // turn} points are back```')
+                conn.zincrby('point', 1200 // turn, ctx.author.id)
                 break
-            else:
-                await ctx.send(f'HIT:{hitBlow[0]}, BLOW:{hitBlow[1]}')
 
 def setup(bot):
     bot.add_cog(Hitblow(bot))
