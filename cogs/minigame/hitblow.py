@@ -11,7 +11,7 @@ class Hitblow(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def hb2(self, ctx):
+    async def hb(self, ctx):
 
         digit = 4 # 解の桁数
 
