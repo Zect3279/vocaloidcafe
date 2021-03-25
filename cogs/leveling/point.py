@@ -40,7 +40,7 @@ class Point(commands.Cog):
 
         while True:
             
-            await ctx.send(1)
+            await ctx.send('OK')
 
             ch = self.bot.get_channel(824476288529203230)
             guild = self.bot.get_guild(808283612105408533)
