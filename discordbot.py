@@ -23,6 +23,7 @@ cogs = [
     'cogs.leveling.point',
     'cogs.leveling.commands',
     'cogs.minigame.hitblow',
+    'cogs.minigame.highlow',
     'cogs.minigame.doubleup'
 ]
 
