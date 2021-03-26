@@ -22,14 +22,14 @@ class Highlow(commands.Cog):
         conn.zincrby('point', -100, ctx.author.id)
         bet = 100
 
-        await ctx.send(f'```1から13まであるトランプのカードが\n自分と相手に1枚ずつ配られました```')
+        await ctx.send(f'```py\n1から13まであるトランプのカードが\n自分と相手に1枚ずつ配られました```')
 
         while True:
 
             you = random.randint(1, 13)
             me = random.randint(1, 13)
 
-            msg = await ctx.send(f'```相手のカードは {you} でした\n自分のカードを予想してください```')
+            msg = await ctx.send(f'```py\n相手のカードは {you} でした\n自分のカードを予想してください```')
             await msg.add_reaction('⤴️')
             await msg.add_reaction('⤵️')
 
@@ -45,7 +45,7 @@ class Highlow(commands.Cog):
 
             if reaction.emoji == '⤴️' and me > you or reaction.emoji == '⤵️' and me < you:
                 mag = (7 - abs(7 - you)) / 7 + 1
-                msg = await ctx.send(f'```自分のカードは {me} でした\n正解 {int(bet)} -> {int(bet * mag)}\n続行しますか?```')
+                msg = await ctx.send(f'```py\n自分のカードは {me} でした\n正解 {int(bet)} -> {int(bet * mag)}\n続行しますか?```')
                 bet *= mag
 
                 await msg.add_reaction('⭕')
@@ -64,12 +64,12 @@ class Highlow(commands.Cog):
                 if reaction.emoji == '⭕':
                     pass
                 else:
-                    await ctx.send(f'お疲れ様でした\n{int(bet)}ポイントの返金です')
+                    await ctx.send(f'```py\nお疲れ様でした\n{int(bet)}ポイントの返金です```')
                     conn.zincrby('point', int(bet), ctx.author.id)
                     break
 
             else:
-                await ctx.send(f'自分のカードは {me} でした\n不正解 賭け金を全て失いました')
+                await ctx.send(f'```py\n自分のカードは {me} でした\n不正解 賭け金を全て失いました```')
                 break
 
 def setup(bot):
