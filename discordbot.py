@@ -19,12 +19,12 @@ cogs = [
     'cogs.commands',
     'cogs.admin',
     'cogs.free.commands',
-    'cogs.free.dice',
-    'cogs.leveling.point',
-    'cogs.leveling.commands',
-    'cogs.minigame.hitblow',
-    'cogs.minigame.highlow',
-    'cogs.minigame.doubleup'
+    'cogs.free.dice'
+#     'cogs.leveling.point',
+#     'cogs.leveling.commands',
+#     'cogs.minigame.hitblow',
+#     'cogs.minigame.highlow',
+#     'cogs.minigame.doubleup'
 ]
 
 for cog in cogs:
