@@ -4,6 +4,17 @@ from discord.ext import commands
 class Delete(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        
+    @commands.command()
+    async def close(self, ctx):
+        
+        if ctx.channel.name != 'text-channel':
+            return
+
+        category = ctx.channel.category
+        for channel in category.channels:
+            await channel.delete()
+        await category.delete()
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
